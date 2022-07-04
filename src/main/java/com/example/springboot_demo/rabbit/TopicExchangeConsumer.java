@@ -9,6 +9,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class TopicExchangeConsumer {
 
+    @RabbitListener(queues = "fan.test")
+    @RabbitHandler
+    public void getQueue2Msg(String data, Channel channel, Message message){
+        try{
+            System.out.println("========"+data);
+            long deliveryTag = message.getMessageProperties().getDeliveryTag();
+            channel.basicAck(deliveryTag, false);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @RabbitListener(queues = "boot-queue")
     @RabbitHandler
     public void getQueueMsg(String data, Channel channel, Message message){

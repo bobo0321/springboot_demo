@@ -13,4 +13,8 @@ public class TopicExchangeProducer {
     public void send(String msg ,String routingKey){
         rabbitTemplate.convertAndSend("boot-topic-exchange", routingKey, msg);
     }
+
+    public void send2(String msg, String routingKey){
+        rabbitTemplate.convertAndSend("fan.test", routingKey, msg);
+    }
 }

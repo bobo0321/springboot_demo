@@ -21,6 +21,7 @@ public class TestController {
     @GetMapping("/rabbit")
     public String rabbit(){
         topicExchangeProducer.send("hahahaha", "com.red.fan");
+        topicExchangeProducer.send2("hehehehe","fan.routing");
         return null;
     }
 }
